@@ -1,0 +1,65 @@
+{
+  "name": "FruityUI",
+  "description": "An UI for 'fruityrazer'.",
+  "author": "Eduardo Almeida",
+  "license": "GPL-3.0",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "app-root-dir": "^1.0.2",
+    "axios": "^0.18.0",
+    "electron-is-dev": "^0.3.0",
+    "electron-store": "^2.0.0",
+    "react": "^16.4.1",
+    "react-ace": "^6.1.4",
+    "react-color": "^2.14.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "react-toastify": "^4.1.0",
+    "redux": "^4.0.0"
+  },
+  "scripts": {
+    "start": "nf start -p 3000",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-pack": "build -c.extraMetadata.main=build/electron.js",
+    "electron-start": "node src/electron-wait-react",
+    "react-start": "react-scripts start",
+    "pack": "build --dir",
+    "preelectron-pack": "yarn build",
+    "dist": "npm run build && build",
+    "postinstall": "install-app-deps"
+  },
+  "devDependencies": {
+    "electron": "^2.0.4",
+    "electron-builder": "^20.19.2"
+  },
+  "homepage": "./",
+  "main": "public/electron.js",
+  "build": {
+    "appId": "io.edr.fruityrazer.fruityui",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "extraFiles": [
+      {
+        "from": "resources/${os}",
+        "to": "Resources/bin",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.utilities"
+    }
+  }
+}
