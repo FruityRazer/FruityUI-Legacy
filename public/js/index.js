@@ -125,8 +125,6 @@ function createMenu() {
 
 function restoreDevicesState() {
     FruityRazer.getDeviceList(devices => {
-        devices = devices.filter(d => d.connected);
-
         devices.filter(d => d.connected).forEach(d => {
             const s = localStorage.get('device:' + d.shortName);
 
