@@ -3,7 +3,7 @@
   "description": "An UI for 'fruityrazer'.",
   "author": "Eduardo Almeida",
   "license": "GPL-3.0",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "app-root-dir": "^1.0.2",

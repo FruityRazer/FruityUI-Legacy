@@ -54,6 +54,7 @@ class App extends Component {
 
                 case 'base_station':
                 case 'huntsman_elite':
+                case 'hyperflux':
                     detail = <Synapse3 device={shortName} />;
 
                     break;
