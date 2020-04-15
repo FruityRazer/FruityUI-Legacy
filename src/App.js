@@ -48,13 +48,13 @@ class App extends Component {
             switch (shortName) {
                 case 'firefly':
                 case 'mamba':
-                case 'mamba_wireless':
+                case 'huntsman_elite_hw':
                     detail = <Synapse2 device={shortName} />;
                     
                     break;
 
                 case 'base_station':
-                case 'huntsman_elite':
+                case 'huntsman_elite_sw':
                 case 'hyperflux':
                     detail = <Synapse3 device={shortName} />;
 

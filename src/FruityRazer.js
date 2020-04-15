@@ -22,9 +22,39 @@ class FruityRazer {
 
     static BaseURL = 'http://localhost:24577';
 
-    static async getDeviceList() {
+    key = null;
+
+    constructor() {
+        this.setup()
+            .then()
+            .catch();
+    }
+
+    get customHeaders() {
+        if (!this.key)
+            return {};
+        
+        return { 
+            headers: {
+                'X-FruityRazer-Key': this.key
+            }
+        };
+    }
+
+    async setup() {
         try {
-            const response = await axios.get(FruityRazer.BaseURL + '/devices');
+            const response = await axios.get(FruityRazer.BaseURL + '/key', this.customHeaders);
+
+            if (response.data.key)
+                this.key = response.data.key;
+        } catch (e) {
+
+        }
+    }
+
+    async getDeviceList() {
+        try {
+            const response = await axios.get(FruityRazer.BaseURL + '/devices', this.customHeaders);
 
             if (response.data.devices)
                 return response.data.devices;
@@ -35,9 +65,9 @@ class FruityRazer {
         return null;
     }
 
-    static async sendLightingMessage(device, args) {
+    async sendLightingMessage(device, args) {
         try {
-            const response = await axios.post(FruityRazer.BaseURL + '/devices/' + device + '/lighting', args);
+            const response = await axios.post(FruityRazer.BaseURL + '/devices/' + device + '/lighting', args, this.customHeaders);
 
             if (response.data.success)
                 return true;
@@ -50,4 +80,4 @@ class FruityRazer {
 
 }
 
-export default FruityRazer;
+export default FruityRazer();
